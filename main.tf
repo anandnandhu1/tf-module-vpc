@@ -78,7 +78,7 @@ resource "aws_eip" "ngw-eip" {
 }
 
 resource "aws_nat_gateway" "ngw" {
-  allocation_id = "aws_eip.ngw-eip.id"
+  allocation_id = aws_eip.ngw-eip.id
   subnet_id = aws_subnet.public.*.id[0]
 
   tags = merge(
