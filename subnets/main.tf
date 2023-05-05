@@ -23,6 +23,12 @@ resource "aws_route_table" "route_table" {
   )
 }
 
+lifecycle {
+  ignore_changes = [
+    route,
+  ]
+}
+
 resource "aws_route_table_association" "association" {
   count          = length(aws_subnet.main)
   subnet_id      = aws_subnet.main.*.id[count.index]
